@@ -5,8 +5,9 @@ const ds = require('../datascource/shops');
 const routers = express.Router();
 
 
-routers.get('/',function(req,res){
-    res.status(200).json(ds.fetchShops(req.query.limit));
+routers.get('/',async(req,res)=>{
+    const shops = await ds.fetchShops(parseInt(req.query.limit));
+    res.status(200).json(shops);
 });
 
 // routers.post('/',function(req,res){

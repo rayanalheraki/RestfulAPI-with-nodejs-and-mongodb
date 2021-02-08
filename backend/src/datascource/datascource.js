@@ -5,16 +5,19 @@ const Connection =require('./index');
 
 const ds = {
     fetchProducts:async ()=>{
-        const collection =await (await Connection).db.collection("products");
+        const collection =(await Connection).db.collection("products");
         const data = await collection
             .find({},
                 {
                     projection:{shops:0,}
                 }).toArray();
+        return data;
     },
     fetchProductsById:async (productId)=>{
-        const data =await (await Connection).db.collection("products");
-        return data.findOne({ _id : ObjectID(productId)});
+        const collection = (await Connection).db.collection("products");
+        const data =await collection.findOne({ _id : ObjectID(productId)});
+
+        return data;
     }
 };
 

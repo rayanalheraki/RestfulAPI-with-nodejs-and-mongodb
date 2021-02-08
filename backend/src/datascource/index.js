@@ -1,12 +1,16 @@
+//connection with mongodb
+
 const MongoDB = require('mongodb').MongoClient;
 
-const uri = `mongodb+srv://zshop:aWH6VweKbwDrJalF@cluster0.ianaq.mongodb.net/zshop?retryWrites=true&w=majority`;
+// insert your uri
+const uri = `mongodb+srv://<userName>:<password>@cluster0.ianaq.mongodb.net/zshop?retryWrites=true&w=majority`;
 
 const Connection = (async ()=>{
     const client = await MongoDB.connect(uri,{useNewUrlParser: true, useUnifiedTopology: true});
-    const collection = client.db('zshop').collection("products");
+    //insert your collection name
+    const db = client.db('collectionName');
     
-    return {client , collection};
+    return {client , db};
 })();
 
 

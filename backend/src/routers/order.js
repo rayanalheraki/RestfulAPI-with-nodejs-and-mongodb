@@ -5,10 +5,10 @@ const cartDs = require('../datascource/cart')
 
 const routers = express.Router();
 
-routers.post('/', function(req,res){
-    const id = ds.createOrder(req.body);
-    cartDs.deleteCartItems();
-    res.status(201).location(`/order/${id}`);
+routers.post('/', async(req,res)=>{
+    const id = await ds.createOrder(req.body);
+    await cartDs.deleteCartItems();
+    res.status(201).location(`/order/${id}`).send();
 })
 
 routers.get('/',function(req,res){
